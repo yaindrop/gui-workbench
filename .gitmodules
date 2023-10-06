@@ -1,0 +1,3 @@
+[submodule "external/WebRTC"]
+	path = external/WebRTC
+	url = https://github.com/stasel/WebRTC.git

@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    // Type Checking
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+
+    // Modules
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    // Emit
+    "declaration": true,
+
+    // Interop Constraints
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+
+    // Language and Environment
+    "jsx": "react",
+    "target": "ESNext"
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["src/**/*"]
+}
