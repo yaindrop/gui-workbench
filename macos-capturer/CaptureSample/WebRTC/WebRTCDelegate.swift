@@ -33,10 +33,8 @@ extension WebRTCDelegate: SignalClientDelegate {
     func signalClient(_ signalClient: SignalingClient, didReceiveRemoteSdp sdp: RTCSessionDescription) {
         debugPrint("didReceiveRemoteSdp", sdp)
         self.webRTCClient.set(remoteSdp: sdp) { (error) in }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.webRTCClient.answer { (localSdp) in
-                self.signalClient.send(sdp: localSdp)
-            }
+        self.webRTCClient.answer { (localSdp) in
+            self.signalClient.send(sdp: localSdp)
         }
     }
     

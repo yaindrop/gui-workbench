@@ -27,10 +27,9 @@ export class SignalingClient {
   constructor() {
     this.ws = new WebSocket(Config.signalingServer)
     this.ws.onmessage = async (e) => {
-      console.log('onmessage', e)
       const text = await e.data.text()
-      console.log('text', text)
       const message: Message = JSON.parse(text)
+      console.log('ws.onmessage', message)
       if (message.type === 'IceCandidate') {
         this.onIceCandidate(new RTCIceCandidate(message.payload))
       } else if (message.type === 'SessionDescription') {
@@ -48,6 +47,7 @@ export class SignalingClient {
   }
 
   private sendMessage(message: Message) {
+    console.log('ws.send', message)
     this.ws.send(new TextEncoder().encode(JSON.stringify(message)))
   }
 }
@@ -73,33 +73,14 @@ export class WebRTCClient {
   async offer() {
     this.pc.addTransceiver('video', { direction: 'recvonly' })
     try {
-      console.warn(1)
       const offer = await this.pc.createOffer({
         offerToReceiveAudio: false,
         offerToReceiveVideo: true,
       })
-      await this.pc.setLocalDescription(offer)
-      console.warn(2)
+      console.log('offer created')
 
-      await new Promise<void>((resolve) => {
-        if (this.pc.iceGatheringState === 'complete') {
-          return resolve()
-        }
-        const onGatheringStateChange = () => {
-          if (this.pc.iceGatheringState === 'complete') {
-            this.pc.removeEventListener(
-              'icegatheringstatechange',
-              onGatheringStateChange
-            )
-            resolve()
-          }
-        }
-        this.pc.addEventListener(
-          'icegatheringstatechange',
-          onGatheringStateChange
-        )
-      })
-      console.warn(3)
+      await this.pc.setLocalDescription(offer)
+      console.log('local description set')
 
       this.onLocalDescription(this.pc.localDescription!)
     } catch (e) {
