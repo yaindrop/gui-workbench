@@ -1,0 +1,13 @@
+{
+  "name": "signaling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "dependencies": {
+    "ws": "^8.14.2"
+  }
+}
