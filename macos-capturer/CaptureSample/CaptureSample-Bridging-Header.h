@@ -3,3 +3,4 @@
 //
 
 #import "RTCCustomVideoCapturer.h"
+#import "SharedMemoryHelper.h"

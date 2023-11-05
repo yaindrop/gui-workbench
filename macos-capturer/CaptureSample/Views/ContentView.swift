@@ -10,6 +10,19 @@ import ScreenCaptureKit
 import OSLog
 import Combine
 
+let sharedMemory = SharedMemory()
+
+func getRawData(from pixelBuffer: CVPixelBuffer) -> Data? {
+    CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
+    defer { CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0)) }
+    guard let baseAddress = CVPixelBufferGetBaseAddress(pixelBuffer) else {
+        return nil
+    }
+    let height = CVPixelBufferGetHeight(pixelBuffer)
+    let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
+    return Data(bytes: baseAddress, count: height * bytesPerRow)
+}
+
 struct ContentView: View {
     
     @State var userStopped = false
@@ -21,7 +34,7 @@ struct ContentView: View {
     @State var capturePreview: CapturePreview = CapturePreview()
     @State var cancellables: Set<AnyCancellable> = []
     
-    @State var webRTCDelegate = WebRTCDelegate()
+//    @State var webRTCDelegate = WebRTCDelegate()
     
     var body: some View {
         HSplitView {
@@ -73,7 +86,10 @@ struct ContentView: View {
             screenRecorder.$latestFrame.sink{ frame in
                 guard let frame = frame else { return }
                 capturePreview.updateFrame(frame)
-                webRTCDelegate.webRTCClient.process(frame: frame)
+                guard let pixelBuffer = frame.sampleBuffer.imageBuffer else { return }
+                guard let data = getRawData(from: pixelBuffer) else { return }
+                print(data.count)
+                sharedMemory.sendData(data)
             }.store(in: &cancellables)
         }
     }

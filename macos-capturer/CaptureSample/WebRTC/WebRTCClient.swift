@@ -43,7 +43,7 @@ final class WebRTCClient: NSObject {
     
     required init(iceServers: [String]) {
         let config = RTCConfiguration()
-        config.iceServers = [RTCIceServer(urlStrings: iceServers)]
+//        config.iceServers = [RTCIceServer(urlStrings: iceServers)]
         
         // Unified plan is more superior than planB
         config.sdpSemantics = .unifiedPlan
@@ -111,6 +111,11 @@ final class WebRTCClient: NSObject {
         self.localVideoTrack = videoTrack
         self.peerConnection.add(videoTrack, streamIds: [streamId])
         self.remoteVideoTrack = self.peerConnection.transceivers.first { $0.mediaType == .video }?.receiver.track as? RTCVideoTrack
+        guard let sender = self.peerConnection.senders.first else {
+            return
+        }
+        debugPrint("has sender", sender.senderId)
+        sender.parameters.degradationPreference = NSNumber.init(value: RTCDegradationPreference.maintainResolution.rawValue)
     }
     
     private func createVideoTrack() -> RTCVideoTrack {

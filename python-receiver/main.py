@@ -77,7 +77,7 @@ class CustomVideoStreamTrack(VideoStreamTrack):
         print("in recv")
         frame = await self.track.recv()
         print("frame", frame)
-        frame_np = frame.to_ndarray(format="yuv420p")
+        frame_np = frame.to_ndarray(format="bgr24")
         cv2.imshow('Received Frame', frame_np)
         cv2.waitKey(1)
         return frame
@@ -88,8 +88,8 @@ custom_track: CustomVideoStreamTrack | None = None
 
 class WebRTCClient:
     def __init__(self):
-        self.pc = RTCPeerConnection(configuration=RTCConfiguration(
-            iceServers=[RTCIceServer(urls='stun:stun.l.google.com:19302')]))
+        config = RTCConfiguration()
+        self.pc = RTCPeerConnection(configuration=config)
         self.pc.on("track", self._on_track)
 
         def on_iceconnectionstatechange():

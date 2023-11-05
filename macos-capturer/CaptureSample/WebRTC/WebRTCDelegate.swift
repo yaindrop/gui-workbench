@@ -12,7 +12,7 @@ let config = Config.default
 
 class WebRTCDelegate {
     let signalClient = SignalingClient(webSocket: NativeWebSocket(url: config.signalingServerUrl))
-    let webRTCClient = WebRTCClient(iceServers: config.webRTCIceServers)
+    let webRTCClient = WebRTCClient(iceServers: [])
     
     init() {
         self.webRTCClient.delegate = self

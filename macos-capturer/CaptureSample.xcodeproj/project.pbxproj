@@ -14,6 +14,8 @@
 		57501DD72AC890900074810D /* NativeWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57501DD62AC890900074810D /* NativeWebSocket.swift */; };
 		57501DD92AC892570074810D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57501DD82AC892570074810D /* Config.swift */; };
 		57501DDD2AC93DC50074810D /* RTCCustomVideoCapturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57501DDC2AC93DC50074810D /* RTCCustomVideoCapturer.m */; };
+		57668B812AF72E7400E079C2 /* SharedMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57668B802AF72E7400E079C2 /* SharedMemory.swift */; };
+		578308302AED744400951C41 /* SharedMemoryHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 5783082F2AED744400951C41 /* SharedMemoryHelper.c */; };
 		57D065D02AB36F8200744C46 /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = 57D065CF2AB36F8200744C46 /* WebRTC */; };
 		57FB6FF42ACEE18B008C9520 /* WebRTCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB6FF32ACEE18B008C9520 /* WebRTCDelegate.swift */; };
 		C470F0812811C5CB00D29309 /* ScreenRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C470F0802811C5CB00D29309 /* ScreenRecorder.swift */; };
@@ -38,6 +40,9 @@
 		57501DDB2AC93DC50074810D /* CaptureSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CaptureSample-Bridging-Header.h"; sourceTree = "<group>"; };
 		57501DDC2AC93DC50074810D /* RTCCustomVideoCapturer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTCCustomVideoCapturer.m; sourceTree = "<group>"; };
 		57501DDE2AC93DED0074810D /* RTCCustomVideoCapturer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTCCustomVideoCapturer.h; sourceTree = "<group>"; };
+		57668B802AF72E7400E079C2 /* SharedMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedMemory.swift; sourceTree = "<group>"; };
+		5783082E2AED73F100951C41 /* SharedMemoryHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedMemoryHelper.h; sourceTree = "<group>"; };
+		5783082F2AED744400951C41 /* SharedMemoryHelper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SharedMemoryHelper.c; sourceTree = "<group>"; };
 		57FB6FF32ACEE18B008C9520 /* WebRTCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCDelegate.swift; sourceTree = "<group>"; };
 		7C6C99F1D4B6E3EBA3A7B7DF /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		8D89E0E7125AFE6B4E2E6500 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -145,12 +150,15 @@
 				C4B0DAB9276BA49F0015082A /* CaptureSampleApp.swift */,
 				C471DFF92809F440001D24C9 /* PowerMeter.swift */,
 				C470F0802811C5CB00D29309 /* ScreenRecorder.swift */,
+				57668B802AF72E7400E079C2 /* SharedMemory.swift */,
 				C4B0DAAE276BA4480015082A /* Assets.xcassets */,
 				C4B0DAB3276BA4480015082A /* CaptureSample.entitlements */,
 				57501DDC2AC93DC50074810D /* RTCCustomVideoCapturer.m */,
 				57501DDE2AC93DED0074810D /* RTCCustomVideoCapturer.h */,
 				57501DDB2AC93DC50074810D /* CaptureSample-Bridging-Header.h */,
 				C4B0DAB0276BA4480015082A /* Preview Content */,
+				5783082E2AED73F100951C41 /* SharedMemoryHelper.h */,
+				5783082F2AED744400951C41 /* SharedMemoryHelper.c */,
 			);
 			path = CaptureSample;
 			sourceTree = "<group>";
@@ -256,9 +264,11 @@
 				C4B0DABA276BA49F0015082A /* CaptureSampleApp.swift in Sources */,
 				57501DD22AC890030074810D /* RTCStates.swift in Sources */,
 				C4EB90D428108656006A595C /* ConfigurationView.swift in Sources */,
+				57668B812AF72E7400E079C2 /* SharedMemory.swift in Sources */,
 				57501DD72AC890900074810D /* NativeWebSocket.swift in Sources */,
 				57501DCA2AC88F590074810D /* SignalingClient.swift in Sources */,
 				C4729DA52821BFAD00AAC477 /* MaterialView.swift in Sources */,
+				578308302AED744400951C41 /* SharedMemoryHelper.c in Sources */,
 				57501DD92AC892570074810D /* Config.swift in Sources */,
 				57501DCC2AC88F820074810D /* Message.swift in Sources */,
 				C4B0DABE276BA4B50015082A /* ContentView.swift in Sources */,

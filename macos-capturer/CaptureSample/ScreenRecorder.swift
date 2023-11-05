@@ -198,6 +198,7 @@ class ScreenRecorder: ObservableObject {
     private var streamConfiguration: SCStreamConfiguration {
         
         let streamConfig = SCStreamConfiguration()
+        streamConfig.pixelFormat = kCVPixelFormatType_32BGRA
         
         // Configure audio capture.
         streamConfig.capturesAudio = isAudioCaptureEnabled
@@ -216,7 +217,7 @@ class ScreenRecorder: ObservableObject {
         }
         
         // Set the capture interval at 60 fps.
-        streamConfig.minimumFrameInterval = CMTime(value: 1, timescale: 20)
+        streamConfig.minimumFrameInterval = CMTime(value: 1, timescale: 60)
         
         // Increase the depth of the frame queue to ensure high fps at the expense of increasing
         // the memory footprint of WindowServer.
